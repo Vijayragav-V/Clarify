@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { ChevronLeft, ChevronRight } from 'lucide-react-native';
 import axios from 'axios';
+import { API_URL } from '../services/config';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function TestPrep() {
@@ -36,7 +37,7 @@ export default function TestPrep() {
     setPrepMaterial(null);
 
     try {
-      const response = await axios.get("http://localhost:3000/test-prep", {
+      const response = await axios.get(`${API_URL}/test-prep`, {
         params: {
           subject,
           level: 'University'

@@ -8,16 +8,8 @@ class Config {
   public readonly PORT: number | string;
 
   constructor() {
-    this.LEMONFOX_API_KEY =
-      process.env.LEMONFOX_API_KEY ||
-      (() => {
-        throw new Error("LEMONFOX_API_KEY is not defined in .env");
-      })();
-    this.OPENAI_API_KEY =
-      process.env.OPENAI_API_KEY ||
-      (() => {
-        throw new Error("OPENAI_API_KEY is not defined in .env");
-      })();
+    this.LEMONFOX_API_KEY = process.env.LEMONFOX_API_KEY || "";
+    this.OPENAI_API_KEY = process.env.OPENAI_API_KEY || "";
     this.LEMONFOX_API_URL = "https://api.lemonfox.ai/v1/audio/transcriptions";
     this.PORT = process.env.PORT || 3000;
   }

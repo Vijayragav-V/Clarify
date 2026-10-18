@@ -5,6 +5,7 @@ import { RootStackParamList } from '../navigation';
 import { Audio } from 'expo-av';
 import { MaterialIcons, Feather, Ionicons, AntDesign } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { API_URL } from '../services/config';
 
 type ProcessingScreenRouteProp = RouteProp<RootStackParamList, 'Processing'>;
 
@@ -49,7 +50,7 @@ export default function Processing() {
         type: `audio/${fileType || 'm4a'}`,
       } as any);
 
-      const response = await fetch('http://localhost:3000/transcribe', {
+      const response = await fetch(`${API_URL}/transcribe`, {
         method: 'POST',
         body: formData,
         headers: {

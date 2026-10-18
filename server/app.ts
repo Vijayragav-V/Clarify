@@ -11,8 +11,20 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/transcribe", transcribeRoutes);
-app.use("/test-prep", testPrepRoutes);
+app.use("/transcribe", (_req, res, next) => {
+  if (!config.OPENAI_API_KEY || !config.LEMONFOX_API_KEY) {
+    res.status(503).json({ success: false, error: "Add OPENAI_API_KEY and LEMONFOX_API_KEY to server/.env, then restart the server." });
+    return;
+  }
+  next();
+}, transcribeRoutes);
+app.use("/test-prep", (_req, res, next) => {
+  if (!config.OPENAI_API_KEY) {
+    res.status(503).json({ error: "Add OPENAI_API_KEY to server/.env, then restart the server." });
+    return;
+  }
+  next();
+}, testPrepRoutes);
 
 app.get("/health", (_req, res) => {
   res
