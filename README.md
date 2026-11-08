@@ -16,8 +16,6 @@ Clarify is a mobile study companion that helps students revisit what they hear i
 - **Local history:** save results, reopen previous sessions, and delete history entries.
 - **Test preparation:** generate key concepts, formulas, study strategies, and common questions for a selected subject.
 
-Generated sections appear when included in the model response. Test preparation uses the subject and academic level; it does not use saved lecture transcripts.
-
 ## How it works
 
 ```mermaid
@@ -30,8 +28,6 @@ flowchart TD
     F --> G[Save results locally and revisit audio]
     H[Choose a subject for test prep] --> I[OpenAI subject guide via Express]
 ```
-
-The backend temporarily stores uploads in `uploads/`. The transcription controller attempts to delete the uploaded file after processing, whether processing succeeds or fails.
 
 ## Technology
 
@@ -47,8 +43,6 @@ The backend temporarily stores uploads in `uploads/`. The transcription controll
 | Upload handling | Multer, with a 25 MiB file limit |
 | Transcription | Lemonfox AI |
 | Study generation | OpenAI Chat Completions, currently configured for `gpt-3.5-turbo` |
-
-MongoDB is not required by the current application flow. Mongoose is listed as a dependency, but saved session data currently lives on the device.
 
 ## Using Clarify
 
